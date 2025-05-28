@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import HomePage from "./components/HomePage";
+import Survey from "./components/Survey";
+import "./App.css"; // 导入样式文件
 
-function App() {
-  const [count, setCount] = useState(0)
+type AppView = "home" | "survey";
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+const App: React.FC = () => {
+  const [currentView, setCurrentView] = useState<AppView>("home");
 
-export default App
+  const handleEnterSurvey = () => {
+    setCurrentView("survey");
+  };
+
+  const handleBackToHome = () => {
+    setCurrentView("home");
+  };
+
+  const renderCurrentView = () => {
+    switch (currentView) {
+      case "home":
+        return <HomePage onEnterSurvey={handleEnterSurvey} />;
+      case "survey":
+        return <Survey onBackToHome={handleBackToHome} />;
+      default:
+        return <HomePage onEnterSurvey={handleEnterSurvey} />;
+    }
+  };
+
+  return <div className="app-container">{renderCurrentView()}</div>;
+};
+
+export default App;
