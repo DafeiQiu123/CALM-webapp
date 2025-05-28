@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HomePage from "./components/HomePage";
-import Survey from "./components/Survey";
+import Survey from "./components/Survey/Survey";
 import "./App.css"; // 导入样式文件
 
 type AppView = "home" | "survey";
