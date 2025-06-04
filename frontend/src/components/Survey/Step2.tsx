@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import step2BreatheImg from "../../assets/Survey1/step2_breathe.jpg";
+import step2BreatheGif from "../../assets/Survey1/step2_breathe_gif.gif";
 
 interface Step2Props {
   onNext: () => void;
@@ -67,7 +69,7 @@ const Step2: React.FC<Step2Props> = ({ onNext, onBack }) => {
                 感谢你分享自己的感受！现在，我们要一起学习四种平静技巧中的第一种。
               </p>
 
-              {/* 呼吸图片 */}
+              {/* 呼吸图片 - 使用本地图片 */}
               <div style={{ textAlign: "center", margin: "2rem 0" }}>
                 <div
                   style={{
@@ -81,9 +83,29 @@ const Step2: React.FC<Step2Props> = ({ onNext, onBack }) => {
                     justifyContent: "center",
                     margin: "0 auto",
                     boxShadow: "var(--shadow-lg)",
+                    overflow: "hidden",
                   }}
                 >
-                  <span style={{ fontSize: "4rem" }}>🫁</span>
+                  <img
+                    src={step2BreatheImg}
+                    alt="深呼吸练习"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      borderRadius: "50%",
+                    }}
+                    onError={(e) => {
+                      // 如果图片加载失败，显示备用内容
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = "none";
+                      const parent = target.parentElement;
+                      if (parent) {
+                        parent.innerHTML =
+                          '<span style="font-size: 4rem">🫁</span>';
+                      }
+                    }}
+                  />
                 </div>
               </div>
 
@@ -126,22 +148,54 @@ const Step2: React.FC<Step2Props> = ({ onNext, onBack }) => {
                   。可以跟随视频一起来！
                 </p>
 
-                {/* 模拟视频区域 */}
+                {/* 呼吸练习 GIF 动画 */}
                 <div className="media-container">
-                  <div className="media-placeholder">
-                    <div className="text-center">
-                      <div className="play-button">
-                        <span style={{ fontSize: "2rem" }}>▶️</span>
-                      </div>
-                      <p
-                        style={{
-                          fontSize: "1.125rem",
-                          color: "var(--gray-700)",
-                        }}
-                      >
-                        深呼吸练习视频
-                      </p>
-                    </div>
+                  <div
+                    style={{
+                      background: "linear-gradient(135deg, #e3f2fd, #f1f8e9)",
+                      borderRadius: "1rem",
+                      padding: "2rem",
+                      textAlign: "center",
+                      boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
+                    }}
+                  >
+                    <img
+                      src={step2BreatheGif}
+                      alt="深呼吸练习动画指导"
+                      style={{
+                        width: "100%",
+                        maxWidth: "400px",
+                        height: "auto",
+                        borderRadius: "0.5rem",
+                        marginBottom: "1rem",
+                      }}
+                      onError={(e) => {
+                        // 如果GIF加载失败，显示备用内容
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = "none";
+                        const parent = target.parentElement;
+                        if (parent) {
+                          parent.innerHTML = `
+                            <div style="background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 1rem; padding: 3rem; text-align: center;">
+                              <div style="width: 4rem; height: 4rem; background: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; cursor: pointer;">
+                                <span style="font-size: 2rem;">▶️</span>
+                              </div>
+                              <p style="fontSize: 1.125rem; color: #6c757d;">深呼吸练习动画</p>
+                            </div>
+                          `;
+                        }
+                      }}
+                    />
+                    <p
+                      style={{
+                        fontSize: "1.125rem",
+                        color: "#495057",
+                        margin: "0",
+                        fontWeight: "500",
+                      }}
+                    >
+                      跟随动画一起进行深呼吸练习
+                    </p>
                   </div>
                 </div>
               </div>

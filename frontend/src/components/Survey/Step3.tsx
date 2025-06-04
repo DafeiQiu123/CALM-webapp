@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import step3Pressure1 from "../../assets/Survey1/pressure1.gif";
+import step3Pressure2 from "../../assets/Survey1/pressure2.gif";
+import step3Pressure3 from "../../assets/Survey1/pressure3.gif";
 
 interface Step3Props {
   onNext: () => void;
@@ -24,7 +27,7 @@ const Step3: React.FC<Step3Props> = ({ onNext, onBack }) => {
             压力通常会在身体上表现出来。
           </p>
 
-          {/* 图片展示区域 */}
+          {/* 图片展示区域 - 使用 GIF 动画 */}
           <div style={{ margin: "3rem 0" }}>
             {/* 主要图片 */}
             <div style={{ marginBottom: "2rem", textAlign: "center" }}>
@@ -33,17 +36,36 @@ const Step3: React.FC<Step3Props> = ({ onNext, onBack }) => {
                   width: "100%",
                   maxWidth: "24rem",
                   height: "16rem",
-                  background:
-                    "linear-gradient(135deg, var(--red-100), var(--orange-100))",
+                  background: "linear-gradient(135deg, #ffeaa7, #fab1a0)",
                   borderRadius: "1rem",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   margin: "0 auto",
-                  boxShadow: "var(--shadow-md)",
+                  boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
+                  overflow: "hidden",
+                  position: "relative",
                 }}
               >
-                <span style={{ fontSize: "4rem" }}>🧠💭</span>
+                <img
+                  src={step3Pressure1}
+                  alt="压力对大脑的影响"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "1rem",
+                  }}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML =
+                        '<span style="font-size: 4rem">🧠💭</span>';
+                    }
+                  }}
+                />
               </div>
             </div>
 
@@ -60,29 +82,69 @@ const Step3: React.FC<Step3Props> = ({ onNext, onBack }) => {
                 style={{
                   width: "12rem",
                   height: "12rem",
-                  background: "var(--yellow-100)",
+                  background: "linear-gradient(135deg, #fdcb6e, #e17055)",
                   borderRadius: "1rem",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  boxShadow: "var(--shadow-md)",
+                  boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
+                  overflow: "hidden",
+                  position: "relative",
                 }}
               >
-                <span style={{ fontSize: "3rem" }}>😰</span>
+                <img
+                  src={step3Pressure2}
+                  alt="焦虑的表现"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "1rem",
+                  }}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML =
+                        '<span style="font-size: 3rem">😰</span>';
+                    }
+                  }}
+                />
               </div>
               <div
                 style={{
                   width: "12rem",
                   height: "12rem",
-                  background: "var(--red-100)",
+                  background: "linear-gradient(135deg, #fd79a8, #e84393)",
                   borderRadius: "1rem",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  boxShadow: "var(--shadow-md)",
+                  boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
+                  overflow: "hidden",
+                  position: "relative",
                 }}
               >
-                <span style={{ fontSize: "3rem" }}>💓</span>
+                <img
+                  src={step3Pressure3}
+                  alt="心率加速"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "1rem",
+                  }}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML =
+                        '<span style="font-size: 3rem">💓</span>';
+                    }
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -117,16 +179,13 @@ const Step3: React.FC<Step3Props> = ({ onNext, onBack }) => {
           </div>
 
           {/* 提示信息 */}
-          <div
-            className="tip-box"
-            style={{ borderLeftColor: "var(--primary-color)" }}
-          >
+          <div className="tip-box" style={{ borderLeftColor: "#667eea" }}>
             <span className="tip-icon">💡</span>
             <p
               className="tip-text"
               style={{
                 fontSize: "1.125rem",
-                color: "var(--primary-color)",
+                color: "#667eea",
                 fontWeight: "500",
               }}
             >
