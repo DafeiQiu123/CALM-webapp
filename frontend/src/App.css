@@ -1,4 +1,4 @@
-/* App.css - 更新后的样式文件 */
+/* App.css - 修复背景色问题 */
 
 /* 全局样式重置 */
 * {
@@ -8,9 +8,9 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f5f5f5;
@@ -18,7 +18,13 @@ body {
 
 .app-container {
   min-height: 100vh;
-  width: 100%;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* 首页样式 */
@@ -30,6 +36,8 @@ body {
   justify-content: center;
   padding: 2rem 1rem;
   position: relative;
+  width: 100vw;
+  max-width: none;
 }
 
 .homepage-content {
@@ -135,7 +143,8 @@ body {
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -296,14 +305,17 @@ body {
   }
 }
 
-/* Survey相关样式保持不变 */
+/* Survey相关样式 */
 .survey-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 2rem 1rem;
+  width: 100vw;
+  max-width: none;
+  box-sizing: border-box;
 }
 
 .survey-content {
@@ -317,24 +329,39 @@ body {
   position: relative;
 }
 
-/* 标题卡片 */
+/* 标题卡片 - 修复背景色问题 */
 .title-card {
-  background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
   margin-bottom: 2rem;
   text-align: center;
+  /* 默认背景 */
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
 }
 
+/* 特定颜色的标题卡片 */
 .title-card-pink {
-  background: linear-gradient(135deg, #f093fb, #f5576c);
+  background: linear-gradient(135deg, #f093fb, #f5576c) !important;
+}
+
+.title-card-blue {
+  background: linear-gradient(135deg, #4facfe, #00f2fe) !important;
+}
+
+.title-card-yellow {
+  background: linear-gradient(135deg, #ffd89b, #19547b) !important;
+}
+
+.title-card-purple {
+  background: linear-gradient(135deg, #a8edea, #fed6e3) !important;
 }
 
 .title-text {
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
+  color: white;
 }
 
 /* 内容区域 */
@@ -644,7 +671,17 @@ body {
 }
 
 /* 响应式设计 */
+@media (max-width: 1024px) {
+  .survey-container {
+    padding: 1rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .app-container {
+    align-items: stretch;
+  }
+
   .homepage-content {
     padding: 2rem 1.5rem;
   }
