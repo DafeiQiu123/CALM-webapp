@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SurveyStart from "./SurveyStart";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
+import Step4 from "./Step4";
 import FeedbackPage from "./FeedbackPage";
 
 interface SurveyProps {
@@ -34,8 +35,15 @@ const Survey: React.FC<SurveyProps> = ({ onBackToHome }) => {
       case "step3":
         return (
           <Step3
-            onNext={() => handleStepChange("feedback")}
+            onNext={() => handleStepChange("step4")}
             onBack={() => handleStepChange("step2")}
+          />
+        );
+      case "step4":
+        return (
+          <Step4
+            onNext={() => handleStepChange("feedback")}
+            onBack={() => handleStepChange("step3")}
           />
         );
       case "feedback":
