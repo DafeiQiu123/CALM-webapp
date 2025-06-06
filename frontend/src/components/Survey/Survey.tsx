@@ -3,6 +3,10 @@ import SurveyStart from "./SurveyStart";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
+import Step5 from "./Step5";
+import Step6 from "./Step6";
+import Step7 from "./Step7";
+import Step8 from "./Step8";
 import FeedbackPage from "./FeedbackPage";
 
 interface SurveyProps {
@@ -42,14 +46,42 @@ const Survey: React.FC<SurveyProps> = ({ onBackToHome }) => {
       case "step4":
         return (
           <Step4
-            onNext={() => handleStepChange("feedback")}
+            onNext={() => handleStepChange("step5")}
             onBack={() => handleStepChange("step3")}
+          />
+        );
+      case "step5":
+        return (
+          <Step5
+            onNext={() => handleStepChange("step6")}
+            onBack={() => handleStepChange("step4")}
+          />
+        );
+      case "step6":
+        return (
+          <Step6
+            onNext={() => handleStepChange("step7")}
+            onBack={() => handleStepChange("step5")}
+          />
+        );
+      case "step7":
+        return (
+          <Step7
+            onNext={() => handleStepChange("step8")}
+            onBack={() => handleStepChange("step6")}
+          />
+        );
+      case "step8":
+        return (
+          <Step8
+            onNext={() => handleStepChange("feedback")}
+            onBack={() => handleStepChange("step7")}
           />
         );
       case "feedback":
         return (
           <FeedbackPage
-            onBack={() => handleStepChange("step3")}
+            onBack={() => handleStepChange("step7")}
             onComplete={onBackToHome}
           />
         );
